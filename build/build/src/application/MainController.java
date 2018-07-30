@@ -115,7 +115,12 @@ public class MainController implements Initializable{
 					Alert alertasucesso = new Alert(AlertType.CONFIRMATION);
 					alertasucesso.setContentText("atualização concluida!");
 					alertasucesso.setTitle("Aplicativo atualizado");
-					alertasucesso.setOnCloseRequest(event -> System.exit(0));
+					alertasucesso.setOnCloseRequest(event -> {
+						try {
+							new ProcessBuilder("java","-jar",nome_padrao_arquivo).start();
+						} catch (IOException e) { e.printStackTrace(); }
+						System.exit(0);
+					});
 					alertasucesso.show();
 				} else {
 					System.err.println("problema com o arquivo principal");
