@@ -82,7 +82,12 @@ public class MainController implements Initializable{
 				alerta.setContentText("Está versão está atualizada \n versão atual "+
 				codigo_versao_atual+" versao baixada "+ codigo_versao_nova);
 				alerta.setTitle("Atualização não é necessária");
-				alerta.setOnCloseRequest(event -> System.exit(0));
+				alerta.setOnCloseRequest(event -> {
+					try {
+						new ProcessBuilder("java","-jar",nome_padrao_arquivo).start();
+					} catch (IOException e) { e.printStackTrace(); }
+					System.exit(0);
+				});
 				alerta.showAndWait();
 			}
     		
