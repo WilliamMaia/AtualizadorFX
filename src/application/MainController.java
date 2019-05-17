@@ -31,6 +31,9 @@ public class MainController implements Initializable{
 			System.err.println("Parametro necessário não foram preenchidos - url_aplicacao");
 			System.exit(0);
 		}
+		if (config.getOrDefault("exigir_confimacao", "true").equals("false")) {
+			atualizarVersao();
+		}
 	}
     
 	// true para download concluido, false para download não realizado
